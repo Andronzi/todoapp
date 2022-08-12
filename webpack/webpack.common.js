@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "development",
-  entry: "./src/index.tsx",
+  entry: path.resolve(__dirname, "..", "./src/index.tsx"),
   module: {
     rules: [
       {
@@ -16,6 +16,14 @@ module.exports = {
         test: /\.s[ac]ss$/i,
         use: ["style-loader", "css-loader", "sass-loader"],
       },
+      {
+        test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+        use: "file-loader",
+      },
+      {
+        test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
+        use: "file-loader",
+      },
     ],
   },
   resolve: {
@@ -23,21 +31,13 @@ module.exports = {
   },
   output: {
     filename: "bundle.js",
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "..", "./dist"),
     clean: true,
   },
-  devServer: {
-    static: {
-      directory: path.join(__dirname, "public"),
-    },
-    hot: true,
-    compress: true,
-    port: 3000,
-    historyApiFallback: true,
-  },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({ template: "./public/index.html" }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, "..", "./public/index.html"),
+    }),
   ],
-  devtool: "eval-source-map",
+  stats: "errors-only",
 };
