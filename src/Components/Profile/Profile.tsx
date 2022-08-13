@@ -1,19 +1,13 @@
 import React from "react";
+import Info from "./Info";
 import styles from "./constants";
+import avatar from "@images/avatar.png";
 
-interface ProfileProps {
-  name: string;
-  email: string;
-}
-
-const Profile = ({ name, email }: ProfileProps): JSX.Element => {
+const Profile = (): JSX.Element => {
   return (
     <div className={styles.div}>
-      <div>
-        <h2>{name}</h2>
-
-        <p>{email}</p>
-      </div>
+      <img src={avatar} />
+      <Info />
     </div>
   );
 };
