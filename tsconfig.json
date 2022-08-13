@@ -2,7 +2,8 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "types/*": ["./types/*"]
+      "types/*": ["./types/*"],
+      "@Components/*": ["Components/*"]
     },
     // https://www.sitepoint.com/react-with-typescript-best-practices/
     "allowJs": true, // Allow JavaScript files to be compiled
@@ -24,6 +25,12 @@
     "noFallthroughCasesInSwitch": true, // Report errors for fallthrough cases in switch statement
     "lib": ["dom", "es2019.array"]
   },
-  "include": ["src/**/*", "babel.config.js", "webpack/**/*"],
+  "include": [
+    "src/**/*",
+    "babel.config.js",
+    "webpack/**/*",
+    "postscss.config.js",
+    "tailwind.config.js"
+  ],
   "exclude": ["node_modules/**/*", "dist/**/*"]
 }

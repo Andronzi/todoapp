@@ -2,3 +2,4 @@ babel.config.js
 .prettierrc
 tsconfig.js
 .eslintrc.json
+tailwind.config.js

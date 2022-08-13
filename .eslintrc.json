@@ -54,6 +54,7 @@
         "react/state-in-constructor": "warn",
         "react/style-prop-object": "error",
         "react/void-dom-elements-no-children": "warn",
+        "react/function-component-definition": "no",
         "react/jsx-boolean-value": "warn",
         "react/jsx-child-element-spacing": "warn",
         "react/jsx-closing-bracket-location": "warn",

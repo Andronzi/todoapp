@@ -17,6 +17,10 @@ module.exports = {
         use: ["style-loader", "css-loader", "sass-loader"],
       },
       {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader", "postcss-loader"],
+      },
+      {
         test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
         use: "file-loader",
       },
@@ -27,6 +31,9 @@ module.exports = {
     ],
   },
   resolve: {
+    alias: {
+      "@Components": path.resolve(__dirname, "..", "src/Components"),
+    },
     extensions: [".wasm", ".ts", ".tsx", "jsx", ".mjs", ".cjs", ".js", ".json"],
   },
   output: {
