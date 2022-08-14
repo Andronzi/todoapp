@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
-    "typeRoots": ["types/"],
+    "baseUrl": ".",
+    "typeRoots": ["src/types/"],
     "paths": {
-      "types/*": ["./types/*"],
-      "@Components/*": ["Components/*"],
-      "@images/*": ["Resources/images/*"]
+      "types/*": ["src/types/*"],
+      "@Components/*": ["src/Components/*"],
+      "@images/*": ["src/Resources/images/*"]
     },
     // https://www.sitepoint.com/react-with-typescript-best-practices/
     "allowJs": true, // Allow JavaScript files to be compiled
@@ -31,7 +31,7 @@
     "src/**/*",
     "babel.config.js",
     "webpack/**/*",
-    "postscss.config.js",
+    "postcss.config.js",
     "tailwind.config.js"
   ],
   "exclude": ["node_modules/**/*", "dist/**/*"]
