@@ -1,12 +1,19 @@
 import React from "react";
-import Profile from "@Components/Profile/Profile";
-import { styles } from "./constants";
+import TopBar from "@Components/TopBar/TopBar";
+import Navbar from "@Components/NavBar/Navbar";
+import Content from "@Components/Content/Content";
 
 function App(): JSX.Element {
   return (
-    <div className={styles.flex}>
-      <Profile />
-    </div>
+    <>
+      <TopBar />
+
+      <div className="flex w-height">
+        <Navbar />
+
+        <Content />
+      </div>
+    </>
   );
 }
 

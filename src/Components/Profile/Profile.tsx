@@ -1,15 +1,18 @@
 import React from "react";
-import Info from "./Info";
-import styles from "./constants";
 import avatar from "@images/avatar.png";
+import Info from "./Info";
+import styles, { alt } from "./constants";
 
-const Profile = (): JSX.Element => {
-  return (
-    <div className={styles.div}>
-      <img src={avatar} />
-      <Info />
-    </div>
-  );
-};
+const Profile: React.FC = () => (
+  <div className={styles.div}>
+    <img
+      alt={alt}
+      className={styles.imageSize}
+      src={avatar}
+    />
+
+    <Info />
+  </div>
+);
 
 export default Profile;
