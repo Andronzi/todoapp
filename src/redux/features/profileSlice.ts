@@ -13,11 +13,12 @@ const initialState: ProfileState = {
 
 export const profileSlice = createSlice({
   name: "profile",
-  initialState: initialState,
+  initialState,
   reducers: {
-    addData: (state, action: PayloadAction<object>) => {
-      state = { ...state, ...action.payload };
-    },
+    addData: (state, action: PayloadAction<object>) => ({
+      ...state,
+      ...action.payload,
+    }),
   },
 });
 
