@@ -33,8 +33,22 @@ module.exports = {
   resolve: {
     alias: {
       "@Components": path.resolve(__dirname, "..", "src/Components"),
+      "@images": path.resolve(__dirname, "..", "src/Resources/images"),
     },
-    extensions: [".wasm", ".ts", ".tsx", "jsx", ".mjs", ".cjs", ".js", ".json"],
+    extensions: [
+      ".wasm",
+      ".ts",
+      ".tsx",
+      "jsx",
+      ".mjs",
+      ".cjs",
+      ".js",
+      ".json",
+      ".jpg",
+      ".png",
+      ".jpeg",
+      ".ico",
+    ],
   },
   output: {
     filename: "bundle.js",
