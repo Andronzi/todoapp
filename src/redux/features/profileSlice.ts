@@ -1,12 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+
+export const fetchUserById = createAsyncThunk(
+  "users/fetchByIdStatus",
+  async (userId: number, thunkAPI) => {
+    const response = await fetch(`http://localhost:8080/users?${userId}`);
+    return response.json();
+  },
+);
 
 export interface ProfileState {
   name: string;
   email: string;
 }
 
-const initialState: ProfileState = {
+const initialState = {
   name: "Андрей Радионов",
   email: "andrey.radioniv.2003@gmail.com",
 } as ProfileState;
@@ -14,13 +21,13 @@ const initialState: ProfileState = {
 export const profileSlice = createSlice({
   name: "profile",
   initialState,
-  reducers: {
-    addData: (state, action: PayloadAction<object>) => ({
+  reducers: {},
+  extraReducers: builder => {
+    builder.addCase(fetchUserById.fulfilled, (state, action) => ({
       ...state,
       ...action.payload,
-    }),
+    }));
   },
 });
 
-export const { addData } = profileSlice.actions;
 export default profileSlice.reducer;

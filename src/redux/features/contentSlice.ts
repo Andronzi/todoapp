@@ -5,7 +5,7 @@ export interface ContentState {
   groupName: string;
 }
 
-const initialState: ContentState = {
+const initialState = {
   groupName: "Мой день",
 } as ContentState;
 
