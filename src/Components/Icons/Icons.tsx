@@ -1,18 +1,17 @@
 import React from "react";
 import notifications from "@images/notifications.png";
 import settings from "@images/settings.png";
-import { notificationsalt, settingsalt, styles } from "./constants";
 
 const Icons: React.FC = () => (
-  <div className={styles.div}>
+  <div className="flex mr-4">
     <img
-      alt={notificationsalt}
-      className={styles.image}
+      alt="Уведомления"
+      className="mr-4"
       src={notifications}
     />
 
     <img
-      alt={settingsalt}
+      alt="Настройки"
       src={settings}
     />
   </div>

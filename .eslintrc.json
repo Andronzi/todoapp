@@ -57,7 +57,7 @@
         "react/function-component-definition": "off",
         "react/jsx-boolean-value": "warn",
         "react/jsx-child-element-spacing": "warn",
-        "react/jsx-closing-bracket-location": "warn",
+        "react/jsx-closing-bracket-location": "off",
         "react/jsx-closing-tag-location": "warn",
         "react/jsx-curly-brace-presence": "warn",
         "react/jsx-curly-newline": "warn",
@@ -75,7 +75,7 @@
         "react/jsx-no-bind": "warn",
         "react/jsx-no-constructed-context-values": "warn",
         "react/jsx-no-leaked-render": "warn",
-        "react/jsx-no-literals": "warn",
+        "react/jsx-no-literals": "off",
         "react/jsx-no-script-url": "warn",
         "react/jsx-no-useless-fragment": "warn",
         "react/jsx-one-expression-per-line": "warn",
@@ -86,6 +86,9 @@
         "react/jsx-sort-props": "warn",
         "react/jsx-space-before-closing": "warn",
         "react/jsx-tag-spacing": "warn",
-        "react/jsx-wrap-multilines": "warn"
+        "react/jsx-wrap-multilines": "warn",
+        "jsx-a11y/click-events-have-key-events": "off",
+        "@typescript-eslint/no-unused-vars": "warn", //in prod mode it must be error
+        "no-param-reassign": "off"
     }
 }

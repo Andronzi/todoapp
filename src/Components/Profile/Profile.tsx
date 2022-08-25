@@ -1,13 +1,12 @@
 import React from "react";
 import avatar from "@images/avatar.png";
 import Info from "./Info";
-import styles, { alt } from "./constants";
 
 const Profile: React.FC = () => (
-  <div className={styles.div}>
+  <div className="flex ml-4 items-center">
     <img
-      alt={alt}
-      className={styles.imageSize}
+      alt="logo"
+      className="w-11"
       src={avatar}
     />
 
