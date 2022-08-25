@@ -13,10 +13,9 @@ export const contentSlice = createSlice({
   name: "content",
   initialState,
   reducers: {
-    changeGroupName: (state, action: PayloadAction<{ name: string }>) => ({
-      ...state,
-      name: action.payload.name,
-    }),
+    changeGroupName: (state, action: PayloadAction<string>) => {
+      state.groupName = action.payload;
+    },
   },
 });
 
