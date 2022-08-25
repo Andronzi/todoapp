@@ -31,9 +31,6 @@ export const profileSlice = createSlice({
       state.name = action.payload[0].name;
       state.email = action.payload[0].email;
     });
-    builder.addCase(fetchUserById.rejected, (state, action) => {
-      console.log("rejected");
-    });
   },
 });
 

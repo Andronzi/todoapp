@@ -1,7 +1,7 @@
 import React from "react";
-import { RootState } from "src/redux/store";
-import { useAppSelector } from "../../redux/hooks";
-import { ContentState } from "../../redux/features/contentSlice";
+import { RootState } from "@redux/store/store";
+import { useAppSelector } from "@redux/hooks";
+import { ContentState } from "@redux/store/contentSlice";
 
 const Content: React.FC = () => {
   const content: ContentState = useAppSelector(

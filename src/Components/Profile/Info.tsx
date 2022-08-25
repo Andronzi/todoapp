@@ -1,21 +1,20 @@
-import React, { useEffect } from "react";
-import { RootState } from "src/redux/store";
-import { useAppSelector } from "../../redux/hooks";
-import { ProfileState } from "../../redux/features/profileSlice";
-import styles from "./constants";
+import React from "react";
+import { RootState } from "@redux/store/store";
+import { useAppSelector } from "@redux/hooks";
+import { ProfileState } from "@redux/store/profileSlice";
 
 const Info: React.FC = () => {
   const profile: ProfileState = useAppSelector(
     (state: RootState) => state.profile,
   );
 
-  console.log(profile);
-
   return (
-    <div className={styles.profileInfo}>
-      <h2 className={styles.name}>{profile.name}</h2>
+    <div className="ml-2.5">
+      <h2 className="font-nunito font-semibold text-sm">{profile.name}</h2>
 
-      <p className={styles.email}>{profile.email}</p>
+      <p className="font-nunito font-regular text-xs text-darkgrey">
+        {profile.email}
+      </p>
     </div>
   );
 };

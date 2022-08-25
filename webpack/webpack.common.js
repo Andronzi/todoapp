@@ -34,6 +34,7 @@ module.exports = {
     alias: {
       "@Components": path.resolve(__dirname, "..", "src/Components"),
       "@images": path.resolve(__dirname, "..", "src/Resources/images"),
+      "@redux": path.resolve(__dirname, "..", "src/redux"),
     },
     extensions: [
       ".wasm",
