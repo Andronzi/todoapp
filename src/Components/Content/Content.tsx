@@ -13,13 +13,13 @@ const Content: React.FC = () => {
   function getDate() {
     const currentDate = new Date();
     const weeks = [
+      "Sunday",
       "Monday",
       "Tuesday",
       "Wednesday",
       "Thursday",
       "Friday",
       "Saturday",
-      "Sunday",
     ];
 
     const months = [
@@ -37,7 +37,7 @@ const Content: React.FC = () => {
       "December",
     ];
 
-    return `${weeks[currentDate.getDay() - 1]}, ${currentDate.getDate()} ${
+    return `${weeks[currentDate.getDay()]}, ${currentDate.getDate()} ${
       months[currentDate.getMonth()]
     }`;
   }
