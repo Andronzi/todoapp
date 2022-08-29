@@ -1,7 +1,12 @@
 import React from "react";
 import { RootState } from "@redux/store/store";
 import { useAppDispatch, useAppSelector } from "@redux/hooks";
-import { ContentState, setDate } from "@redux/store/contentSlice";
+import {
+  ContentState,
+  setDate,
+  fetchTasksByGroupName,
+} from "@redux/store/contentSlice";
+import Task from "@Components/Task/Task";
 import "./fonts.scss";
 
 const Content: React.FC = () => {
@@ -46,6 +51,10 @@ const Content: React.FC = () => {
     dispatch(setDate(getDate()));
   }
 
+  React.useEffect(() => {
+    dispatch(fetchTasksByGroupName(content.groupName));
+  }, [dispatch, content.groupName]);
+
   return (
     <div className="content bg-lightgrey w-screen h-screen ml-4">
       <h1 className="content-title font-nunito ml-16 mt-8">
@@ -55,6 +64,13 @@ const Content: React.FC = () => {
       <p className="content-subtitle font-nunito ml-16 text-darkgrey">
         {content.isHome ? content.date : ""}
       </p>
+
+      {content.tasks.map((task, index) => (
+        <Task
+          key={task.id}
+          taskId={index}
+        />
+      ))}
     </div>
   );
 };
