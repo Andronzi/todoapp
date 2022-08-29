@@ -1,6 +1,11 @@
 import React from "react";
-import { useAppDispatch } from "@redux/hooks";
-import { changeGroupName, setIsHome } from "@redux/store/contentSlice";
+import { RootState } from "@redux/store/store";
+import { useAppDispatch, useAppSelector } from "@redux/hooks";
+import {
+  ContentState,
+  changeGroupName,
+  setIsHome,
+} from "@redux/store/contentSlice";
 
 interface GroupProps {
   title: string;
@@ -8,8 +13,13 @@ interface GroupProps {
 }
 
 const Group: React.FC<GroupProps> = ({ title, image }) => {
+  const content: ContentState = useAppSelector(
+    (state: RootState) => state.content,
+  );
   const dispatch = useAppDispatch();
   function handleClick() {
+    if (content.groupName === title) return;
+
     dispatch(changeGroupName(title));
 
     if (title === "Мой день") {

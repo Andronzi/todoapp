@@ -7,6 +7,7 @@ import {
   fetchTasksByGroupName,
 } from "@redux/store/contentSlice";
 import Task from "@Components/Task/Task";
+import TasksLoader from "@src/Loaders/TasksLoader";
 import "./fonts.scss";
 
 const Content: React.FC = () => {
@@ -56,22 +57,28 @@ const Content: React.FC = () => {
   }, [dispatch, content.groupName]);
 
   return (
-    <div className="content bg-lightgrey w-screen h-screen ml-4">
-      <h1 className="content-title font-nunito ml-16 mt-8">
-        {content.groupName}
-      </h1>
+    <>
+      {content.isLoading ? (
+        <div className="content bg-lightgrey w-screen h-screen ml-4">
+          <h1 className="content-title font-nunito ml-16 mt-8">
+            {content.groupName}
+          </h1>
 
-      <p className="content-subtitle font-nunito ml-16 text-darkgrey">
-        {content.isHome ? content.date : ""}
-      </p>
+          <p className="content-subtitle font-nunito ml-16 text-darkgrey">
+            {content.isHome ? content.date : ""}
+          </p>
 
-      {content.tasks.map((task, index) => (
-        <Task
-          key={task.id}
-          taskId={index}
-        />
-      ))}
-    </div>
+          {content.tasks.map((task, index) => (
+            <Task
+              key={task.id}
+              taskId={index}
+            />
+          ))}
+        </div>
+      ) : (
+        <TasksLoader />
+      )}
+    </>
   );
 };
 

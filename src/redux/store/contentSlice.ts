@@ -36,6 +36,7 @@ export interface ContentState {
   isHome: boolean;
   date: string;
   tasks: Array<TasksArray>;
+  isLoading: boolean;
 }
 
 const initialState = {
@@ -43,6 +44,7 @@ const initialState = {
   isHome: true,
   date: "Thursday, 25 Augast",
   tasks: [],
+  isLoading: false,
 } as ContentState;
 
 export const contentSlice = createSlice({
@@ -51,6 +53,7 @@ export const contentSlice = createSlice({
   reducers: {
     changeGroupName: (state, action: PayloadAction<string>) => {
       state.groupName = action.payload;
+      state.isLoading = false;
     },
     setIsHome: (state, action: PayloadAction<boolean>) => {
       state.isHome = action.payload;
@@ -62,6 +65,7 @@ export const contentSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(fetchTasksByGroupName.fulfilled, (state, action) => {
       state.tasks = action.payload;
+      state.isLoading = true;
     });
   },
 });
