@@ -36,6 +36,7 @@ module.exports = {
       "@images": path.resolve(__dirname, "..", "src/Resources/images"),
       "@redux": path.resolve(__dirname, "..", "src/redux"),
       "@src": path.resolve(__dirname, "..", "src"),
+      "@API": path.resolve(__dirname, "..", "src/API"),
     },
     extensions: [
       ".wasm",
