@@ -1,9 +1,9 @@
 import React from "react";
-import sunny from "@images/navbar/sunny.png";
-import star from "@images/navbar/star.png";
-import plan from "@images/navbar/plan.png";
-import user from "@images/navbar/user.png";
-import tasks from "@images/navbar/tasks.png";
+import sunny from "@images/navbar/sunny.svg";
+import star from "@images/navbar/star.svg";
+import plan from "@images/navbar/plan.svg";
+import user from "@images/navbar/user.svg";
+import tasks from "@images/navbar/tasks.svg";
 import Group from "./Group";
 
 const Navbar: React.FC = () => (

@@ -16,7 +16,7 @@ function App(): JSX.Element {
     <>
       <TopBar />
 
-      <div className="flex w-height">
+      <div className="app-content flex">
         <Navbar />
 
         <Content />

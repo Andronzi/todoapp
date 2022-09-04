@@ -7,6 +7,7 @@ import {
   fetchTasksByGroupName,
 } from "@redux/store/contentSlice";
 import Task from "@Components/Task/Task";
+import AddField from "@Components/AddField/AddField";
 import TasksLoader from "@src/Loaders/TasksLoader";
 import "./fonts.scss";
 
@@ -53,13 +54,14 @@ const Content: React.FC = () => {
   }
 
   React.useEffect(() => {
-    dispatch(fetchTasksByGroupName(content.groupName));
+    dispatch(fetchTasksByGroupName());
   }, [dispatch, content.groupName]);
 
   return (
+    // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {content.isLoading ? (
-        <div className="content bg-lightgrey w-screen h-screen ml-4">
+        <div className="content bg-lightgrey w-full h-full ml-4 relative">
           <h1 className="content-title font-nunito ml-16 mt-8">
             {content.groupName}
           </h1>
@@ -74,6 +76,8 @@ const Content: React.FC = () => {
               taskId={index}
             />
           ))}
+
+          <AddField />
         </div>
       ) : (
         <TasksLoader />

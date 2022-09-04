@@ -1,5 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import { fetchData } from "@API/apiHandler";
+import { useAppDispatch } from "@redux/hooks";
+import { AppDispatch } from "./store";
 
 type Task = {
   groupName: string;
@@ -9,34 +12,35 @@ type Task = {
   id: number;
 };
 
-type ClientTaskData = {
+export type ClientTaskData = {
   groupName: string;
   value: string;
-  remindTime: Date;
-  completionTime: Date;
+  remindTime?: Date;
+  completionTime?: Date;
 };
 
-export const fetchTasksByGroupName = createAsyncThunk(
+export const fetchTasksByGroupName = fetchData(
   "tasks/fetchByGroupNameStatus",
-  async (groupName: string, thunkAPI) => {
-    const response = await fetch(
-      "https://6307551fc0d0f2b8012cb7ad.mockapi.io/api/todo/tasks",
-    );
-
-    const data = await response.json();
-    const result = data.filter((task: Task) => task.groupName === groupName);
-
-    return result;
-  },
+  "https://6307551fc0d0f2b8012cb7ad.mockapi.io/api/todo/tasks",
 );
 
 export const addTask = createAsyncThunk(
   "tasks/addTask",
-  async (data: ClientTaskData, thunkAPI) => {
+  async (data: ClientTaskData) => {
     const response = await fetch(
       "https://6307551fc0d0f2b8012cb7ad.mockapi.io/api/todo/tasks",
-      { method: "POST", body: JSON.stringify(data) },
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+        body: JSON.stringify(data),
+      },
     );
+
+    const answer = await response.json();
+
+    return answer;
   },
 );
 
@@ -80,14 +84,34 @@ export const contentSlice = createSlice({
     },
   },
   extraReducers: builder => {
+    builder.addCase(fetchTasksByGroupName.pending, state => {
+      state.isLoading = false;
+    });
+
     builder.addCase(fetchTasksByGroupName.fulfilled, (state, action) => {
-      state.tasks = action.payload;
+      state.tasks = action.payload.filter(
+        (task: Task) => task.groupName === state.groupName,
+      );
       state.isLoading = true;
     });
 
-    builder.addCase();
+    builder.addCase(addTask.pending, state => {
+      state.isLoading = false;
+    });
+
+    builder.addCase(addTask.fulfilled, (state, action) => {
+      state.tasks.push(action.payload);
+      state.isLoading = true;
+    });
   },
 });
+
+export const handleAPIAction = (
+  dispatch: AppDispatch,
+  taskData: ClientTaskData,
+) => {
+  dispatch(addTask(taskData));
+};
 
 export const { changeGroupName, setIsHome, setDate } = contentSlice.actions;
 export default contentSlice.reducer;
