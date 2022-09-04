@@ -3,3 +3,7 @@ declare module "*.png" {
   export default src;
 }
 declare module "*.jpeg";
+declare module "*.svg" {
+  const src: any;
+  export default src;
+}
