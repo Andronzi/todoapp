@@ -1,11 +1,8 @@
 import React from "react";
 import useInput from "@src/hooks/useInput";
 import { useAppSelector, useAppDispatch } from "@redux/hooks";
-import {
-  ContentState,
-  ClientTaskData,
-  handleAPIAction,
-} from "@redux/store/contentSlice";
+import { ContentState, ClientTaskData } from "@redux/store/contentSlice";
+import handleAPIAction from "@redux/dispatch/content.dispatch";
 import { RootState } from "@redux/store/store";
 import Plus from "./Plus";
 

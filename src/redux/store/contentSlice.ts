@@ -1,8 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { fetchData } from "@API/apiHandler";
-import { useAppDispatch } from "@redux/hooks";
-import { AppDispatch } from "./store";
 
 type Task = {
   groupName: string;
@@ -105,13 +103,6 @@ export const contentSlice = createSlice({
     });
   },
 });
-
-export const handleAPIAction = (
-  dispatch: AppDispatch,
-  taskData: ClientTaskData,
-) => {
-  dispatch(addTask(taskData));
-};
 
 export const { changeGroupName, setIsHome, setDate } = contentSlice.actions;
 export default contentSlice.reducer;

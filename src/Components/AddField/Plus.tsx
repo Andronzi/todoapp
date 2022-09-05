@@ -2,7 +2,8 @@ import React from "react";
 import plus from "@images/plus.svg";
 import "./style.scss";
 import { useAppDispatch } from "@redux/hooks";
-import { ClientTaskData, handleAPIAction } from "@redux/store/contentSlice";
+import { ClientTaskData } from "@redux/store/contentSlice";
+import handleAPIAction from "@redux/dispatch/content.dispatch";
 
 const Plus: React.FC<ClientTaskData> = taskData => {
   const dispatch = useAppDispatch();
