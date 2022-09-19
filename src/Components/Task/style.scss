@@ -1,0 +1,18 @@
+.drag-circle {
+    position: relative;
+    width: 18px;
+    height: 18px;
+}
+
+.drag-circle:hover:before, .drag-circle:hover:after {
+    content: ""; 
+    position: absolute; 
+    top: 7.2px;
+    left: 1.5px;
+    width: 12px; 
+    height: 1px; 
+    background: black;
+}
+
+.drag-circle:hover:before {transform: rotate(45deg);}
+.drag-circle:hover:after {transform: rotate(-45deg);}
