@@ -7,7 +7,7 @@ const config = {
     database: "todo",
   },
   tables: {
-    users: "users",
+    tasks: "tasks",
   },
   listPerPage: 10,
   codes: {
