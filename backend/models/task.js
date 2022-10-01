@@ -1,6 +1,4 @@
 import { connection } from "../db/connect.js";
-import { handleAnswer } from "../middleware/answerHandler.js";
-import createHttpError from "http-error";
 import {
   createTask,
   updateTask,
@@ -10,22 +8,25 @@ import {
 } from "../db/helpers/tasksql.js";
 
 async function createData(values) {
-  connection.query(createTask(), [values], (err, result) => {
-    if (err) throw err;
-    console.log(result);
+  return new Promise((resolve, reject) => {
+    connection.query(createTask(), [values], (err, result) => {
+      if (err) reject(err);
+      resolve(values);
+    });
   });
 }
 
 function updateData(values, id) {
-  connection.query(updateTask(), [values, id], (err, results) => {
-    if (err) throw err;
-    else console.log(values);
+  return new Promise((resolve, reject) => {
+    connection.query(updateTask(), [values, id], (err, results) => {
+      if (err) reject(err);
+      else resolve(results);
+    });
   });
 }
 
 function readAllData() {
   return new Promise((resolve, reject) => {
-    resolve(1);
     connection.query(getTasks(), [], (err, results) => {
       if (err) reject(err);
       else resolve(results);
@@ -34,16 +35,20 @@ function readAllData() {
 }
 
 function readData(email) {
-  connection.query(getTask(), [email], (err, results) => {
-    if (err) throw err;
-    else console.log(values);
+  return new Promise((resolve, reject) => {
+    connection.query(getTask(), [email], (err, results) => {
+      if (err) reject(err);
+      else resolve(results);
+    });
   });
 }
 
 function deleteData(id) {
-  connection.query(deleteTask(), [id], (err, results) => {
-    if (err) throw err;
-    else console.log(values);
+  return new Promise((resolve, reject) => {
+    connection.query(deleteTask(), [id], (err, results) => {
+      if (err) reject(err);
+      else resolve(results);
+    });
   });
 }
 
