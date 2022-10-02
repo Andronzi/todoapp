@@ -18,7 +18,13 @@ app.all("*", (req, res, next) => {
 });
 
 app.use((error, req, res, next) => {
-  next(createHttpError(500, "Internal Server Error"));
+  res.status(error.status);
+
+  res.json({
+    status: error.status,
+    message: error.message,
+    stack: error.stack,
+  });
 });
 
 app.listen(8080, async err => {

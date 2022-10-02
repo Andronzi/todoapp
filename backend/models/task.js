@@ -11,7 +11,7 @@ async function createData(values) {
   return new Promise((resolve, reject) => {
     connection.query(createTask(), [values], (err, result) => {
       if (err) reject(err);
-      resolve(values);
+      else resolve(values);
     });
   });
 }
@@ -20,7 +20,7 @@ function updateData(values, id) {
   return new Promise((resolve, reject) => {
     connection.query(updateTask(), [values, id], (err, results) => {
       if (err) reject(err);
-      else resolve(results);
+      else resolve(values);
     });
   });
 }
@@ -34,9 +34,10 @@ function readAllData() {
   });
 }
 
-function readData(email) {
+function readData(id) {
+  console.log(id);
   return new Promise((resolve, reject) => {
-    connection.query(getTask(), [email], (err, results) => {
+    connection.query(getTask(), [id], (err, results) => {
       if (err) reject(err);
       else resolve(results);
     });
@@ -47,7 +48,7 @@ function deleteData(id) {
   return new Promise((resolve, reject) => {
     connection.query(deleteTask(), [id], (err, results) => {
       if (err) reject(err);
-      else resolve(results);
+      else resolve("Deleting was successfull");
     });
   });
 }

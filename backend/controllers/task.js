@@ -6,19 +6,18 @@ import {
   updateData,
   deleteData,
 } from "../models/task.js";
-import { codes } from "../config.js";
 
 async function createTask(req, res, next) {
   const data = req.body;
   if (JSON.stringify(data) === "{}") {
-    return next(createHttpError(400, "Data wasnt provided"));
+    next(createHttpError(400, "Data wasnt provided"));
   }
 
   try {
     const result = await createData(data);
     res.json(result);
   } catch (err) {
-    createHttpError(400, err);
+    next(createHttpError(500, err));
   }
 }
 
@@ -27,35 +26,60 @@ async function readTasks(req, res, next) {
     const result = await readAllData();
     res.json(result);
   } catch (err) {
-    createHttpError(400, err);
+    next(createHttpError(500, err));
   }
 }
 
 async function readTask(req, res, next) {
-  readData(req.params.id);
+  const id = req.params.id;
+
+  if (!id || id <= 0) {
+    next(createHttpError(400, "Data wasnt provided"));
+  }
+
+  try {
+    const result = await readData(req.params.id);
+    res.json(result);
+  } catch (err) {
+    next(createHttpError(500, err));
+  }
 }
 
 async function updateTask(req, res, next) {
   const data = req.body;
+  const id = req.params.id;
 
   if (JSON.stringify(data) === "{}") {
-    return next(createHttpError(400, "Data wasnt provided"));
+    next(createHttpError(400, "Data wasnt provided"));
   }
 
-  updateData(data, req.params.id);
+  if (!id || id <= 0) {
+    next(createHttpError(400, "Data wasnt provided"));
+  }
+
+  try {
+    const result = await updateData(data, id);
+    res.json({
+      message: "Data was updated",
+      data: result,
+    });
+  } catch (err) {
+    next(createHttpError(500, err));
+  }
 }
 
 async function deleteTask(req, res, next) {
-  deleteData(req.params.id);
-}
+  const id = req.params.id;
 
-async function userLogin(req, res, next) {
-  const { email, password } = req.body;
+  if (!id || id <= 0) {
+    next(createHttpError(400, "Data wasnt provided"));
+  }
 
-  const user = getUser(email);
-
-  if (!user) {
-    createHttpError("401", "Unable to login");
+  try {
+    const result = await deleteData(id);
+    res.json(result);
+  } catch (err) {
+    next(createHttpError(500, err));
   }
 }
 
